@@ -1,6 +1,7 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "test.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
+{{- $ingressPath := .Values.ingress.paths -}}
 
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -29,7 +30,7 @@ spec:
   rules:
       http:
         paths:
-          {{- range .paths }}
+          {{- range $ingressPath }}
           - path: {{ . }}
             backend:
               serviceName: {{ $fullName }}
