@@ -1,0 +1,18 @@
+image: 758616332952.dkr.ecr.eu-west-1.amazonaws.com/test/service-sample:dev
+pullPolicy: Always
+
+replicaCount: 1
+
+ingress:
+  annotations:
+    #alb.ingress.kubernetes.io/tags: Environment=dev,Team=test
+    # *.dev.test.net
+    kubernetes.io/ingress.class: azure/application-gateway
+    #alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:758616332952:certificate/dbfe1cb5-83ef-4b09-9d2a-21bb59b13f34
+  hosts:
+    - sc.dev.pmltrustlink.net
+
+env: development
+
+auth0:
+  jwksUri: https://trustlinkdev.us.auth0.com/.well-known/jwks.json
