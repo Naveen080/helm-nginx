@@ -30,11 +30,11 @@ spec:
   rules:
       http:
         paths:
-          {{- range $ingressPath }}
-          - path: {{ . }}
-            backend:
-              serviceName: {{ $fullName }}
-              servicePort: {{ $svcPort }}
-          {{- end }}
+        {{- range $ingressPath }}
+         - path: {{ . }}
+           backend:
+             serviceName: {{ $fullName }}
+             servicePort: {{ $svcPort }}
+         {{- end }}
     
   {{- end }}
