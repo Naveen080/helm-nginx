@@ -7,7 +7,10 @@ kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-    {{- include "test.labels" . | nindent 4 }}
+    app: {{ template "test.name" . }}
+    chart: {{ template "test.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
